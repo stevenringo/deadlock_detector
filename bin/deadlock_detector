@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'deadlock_detector'
+
+module DeadlockDetector
+  puts "Checking #{ARGV[0]}..."
+  puts Detector.validate(ARGV[0])
+end
