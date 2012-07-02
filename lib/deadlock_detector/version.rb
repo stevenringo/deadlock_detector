@@ -1,0 +1,3 @@
+module DeadlockDetector
+  VERSION = "0.0.1"
+end
