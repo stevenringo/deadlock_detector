@@ -6,6 +6,10 @@ module DeadlockDetector
       @graph.flatten(1).uniq.each{ |v| find_connections(v) unless @indice[v] }
       @scc
     end
+    
+    def has_loops?(graph)
+      connected_nodes(graph).select{ |a| a.length > 1 }.length >= 1
+    end
 
     private
     

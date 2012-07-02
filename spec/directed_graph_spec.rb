@@ -30,4 +30,25 @@ module DeadlockDetector
       paths.should =~ [[1], [2], [3], [4], [5], [6], [7]]
     end
   end
+  
+  describe "determine if connected nodes form loops, if number of connected nodes >= 1" do
+
+    let(:directed_graph) {  DirectedGraph.new }
+
+    it "finds a loop trivial example supplied" do
+      example_graph = [[1, 2], [2, 1]]
+      directed_graph.should have_loops(example_graph)
+    end
+    
+    it "finds a loop for a known graph with a loop" do
+      example_graph = [[1, 2], [2, 3], [3, 1], [2, 4], [4, 1]]
+      directed_graph.should have_loops(example_graph)
+    end
+
+    it "doesn't find a loop for a known graph with no loop" do
+      example_graph = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]
+      directed_graph.should_not have_loops(example_graph)
+    end
+    
+  end
 end
